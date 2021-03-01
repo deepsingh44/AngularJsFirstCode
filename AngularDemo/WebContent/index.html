@@ -1,0 +1,38 @@
+<html>
+<head>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+</head>
+<body>
+	<div ng-app="myApp" ng-controller="myCtrl">
+		<div align="center">
+			<h1>Welcome to Angular World</h1>
+			<hr>
+			<table>
+			<thead><tr><td>Roll</td><td>Name</td><td>Address</td></tr></thead>
+			<tbody>
+			<tr ng-repeat="std in studentList">
+			<td>{{std.roll}}</td>
+			<td>{{std.name}}</td>
+			<td>{{std.address}}</td>
+			</tr>
+			</tbody>
+			</table>
+			<hr>
+			<script>
+				var app = angular.module('myApp', []);
+				app.controller('myCtrl', function($scope, $http) {
+					$http.get("StudentController").then(function(response) {
+						console.log(response.data);
+						$scope.studentList = response.data;
+					});
+				});
+			</script>
+
+		</div>
+	</div>
+</body>
+</html>
